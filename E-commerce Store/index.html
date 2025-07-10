@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Products | MyShop</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body onload="checkLogin(); renderHeader(); renderSidebar(); loadProducts();">
+  <div id="header"></div>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search products..." oninput="searchProducts()">
+    <div id="category-filter"></div>
+  </div>
+  <div class="main">
+    <div id="sidebar"></div>
+    <div id="product-list"></div>
+  </div>
+  <div id="footer"></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

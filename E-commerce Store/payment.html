@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Payment</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .payment-wrapper {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-left:270px;
+    }
+
+    .payment-wrapper h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .payment-wrapper p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+ .payment-wrapper form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .payment-wrapper input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .payment-wrapper button {
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .payment-wrapper button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body onload="checkLogin(); renderHeader(); renderSidebar(); renderPaymentForm();">
+  <div id="header"></div>
+  <div class="main">
+    <div id="sidebar"></div>
+    <div id="payment-form-container"></div>
+  </div>
+  <div id="footer"></div>
+  <script src="js/auth.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    function renderPaymentForm() {
+      const container = document.getElementById("payment-form-container");
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      container.innerHTML = `
+        <div class="payment-wrapper">
+          <h2>Payment</h2>
+          <p>Total Amount: ₹${total}</p>
+          <form onsubmit="return processPayment(event)">
+            <input type="text" placeholder="Card Number" required />
+            <input type="text" placeholder="Cardholder Name" required />
+            <input type="text" placeholder="Expiry Date (MM/YY)" required />
+            <input type="text" placeholder="CVV" required />
+            <button type="submit">Pay Now</button>
+          </form>
+        </div>`;
+    }
+
+    function processPayment(event) {
+      event.preventDefault();
+      alert("Payment Successful! Thank you for your purchase.");
+      localStorage.removeItem("cart");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

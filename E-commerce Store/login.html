@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Login | MyShop</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      text-align: center;
+    }
+    .container h2 {
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    .container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .container button:hover {
+      background-color: #0056b3;
+    }
+    .toggle-form {
+      margin-top: 15px;
+      color: #666;
+    }
+    .toggle-form a {
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .toggle-form a:hover {
+      text-decoration: underline;
+    }
+    .password-container {
+      position: relative;
+    }
+    .password-container input {
+      padding-right: 40px;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to MyShop</h2>
+    
+    <!-- Login Form -->
+    <div id="login-form">
+      <input type="text" id="username" placeholder="Enter username" required />
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Enter password" required />
+        <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+      </div>
+      <button onclick="login()">Login</button>
+      <div class="toggle-form">
+        Don't have an account? <a onclick="showRegisterForm()">Register</a>
+      </div>
+    </div>
+    
+    <!-- Register Form -->
+    <div id="register-form" style="display: none;">
+      <input type="text" id="reg-username" placeholder="Choose username" required />
+      <div class="password-container">
+        <input type="password" id="reg-password" placeholder="Choose password" required />
+        <span class="toggle-password" onclick="togglePassword('reg-password')">👁️</span>
+      </div>
+      <div class="password-container">
+        <input type="password" id="confirm-password" placeholder="Confirm password" required />
+        <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+      </div>
+      <button onclick="register()">Register</button>
+      <div class="toggle-form">
+        Already have an account? <a onclick="showLoginForm()">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>
